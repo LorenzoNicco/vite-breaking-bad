@@ -25,26 +25,11 @@ import CardGenerator from "./CardGenerator.vue";
     <div class="container bg-white p-5">
         <div class="row">
             <div class="col-12 bg-dark text-white px-3 py-2">Found cards</div>
-
         </div>
 
         <div class="row">
-    
             <CardGenerator class="col-2 mb-2"/>
-            <CardGenerator class="col-2 mb-2"/>
-            <CardGenerator class="col-2 mb-2"/>
-            <CardGenerator class="col-2 mb-2"/>
-            <CardGenerator class="col-2 mb-2"/>
-            <CardGenerator class="col-2 mb-2"/>
-    
-            <CardGenerator class="col-2"/>
-            <CardGenerator class="col-2"/>
-            <CardGenerator class="col-2"/>
-            <CardGenerator class="col-2"/>
-            <CardGenerator class="col-2"/>
-            <CardGenerator class="col-2"/>
         </div>
-
     </div>
 
 </template>
