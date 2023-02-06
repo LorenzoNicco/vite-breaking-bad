@@ -1,16 +1,19 @@
 <script>
     export default {
-        name: "CardGenerator"
+        name: "CardGenerator",
+        props: {
+            card: Object
+        }
 
     }
 </script>
 
 <template>
     <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="" class="card-img-top" alt="...">
 
         <div class="card-body">
-            <h4 class="card-title">Title</h4>
+            <h4 class="card-title">{{ card.name }}</h4>
         </div>
 
         <div class="card-body">
