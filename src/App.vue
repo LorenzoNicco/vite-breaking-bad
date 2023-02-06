@@ -1,15 +1,20 @@
 <script>
+import AppHeader from "./components/AppHeader.vue";
+
 export default {
+  components: {
+    AppHeader
+  },
   data() {
     return {
-      count: 0
+    
     }
   }
 }
 </script>
 
 <template>
-  <button @click="count++">Count is: {{ count }}</button>
+  <AppHeader />
 </template>
 
 <style lang="scss">
