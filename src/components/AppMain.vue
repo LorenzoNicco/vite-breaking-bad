@@ -1,6 +1,11 @@
 <script>
+import CardGenerator from "./CardGenerator.vue";
+
     export default {
-        name: "AppMain"
+        name: "AppMain",
+        components: {
+            CardGenerator
+        }
 
     }
 </script>
@@ -15,13 +20,33 @@
                 <option value="3">Three</option>
             </select>
         </form>
+    </div>
 
-        <div class="row p-5 bg-white">
+    <div class="container bg-white p-5">
+        <div class="row">
             <div class="col-12 bg-dark text-white px-3 py-2">Found cards</div>
 
-            
         </div>
+
+        <div class="row">
+    
+            <CardGenerator class="col-2 mb-2"/>
+            <CardGenerator class="col-2 mb-2"/>
+            <CardGenerator class="col-2 mb-2"/>
+            <CardGenerator class="col-2 mb-2"/>
+            <CardGenerator class="col-2 mb-2"/>
+            <CardGenerator class="col-2 mb-2"/>
+    
+            <CardGenerator class="col-2"/>
+            <CardGenerator class="col-2"/>
+            <CardGenerator class="col-2"/>
+            <CardGenerator class="col-2"/>
+            <CardGenerator class="col-2"/>
+            <CardGenerator class="col-2"/>
+        </div>
+
     </div>
+
 </template>
 
 <style lang="scss" scoped>
