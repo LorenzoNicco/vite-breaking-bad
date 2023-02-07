@@ -2,28 +2,42 @@
 import CardGenerator from "./CardGenerator.vue";
 import { store } from "../store.js";
 
-    export default {
-        name: "AppMain",
-        components: {
-            CardGenerator
-        },
-        data () {
-            return {
-                store
-            }
+import axios from "axios";
+
+export default {
+    name: "AppMain",
+    components: {
+        CardGenerator
+    },
+    data () {
+        return {
+            store
         }
+    },
+    created () {
+        axios
+        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php")
+        .then ((response) => {
+            this.store.cards = response.data.data.slice(0,20);
+            console.log(this.store.cards);
+        });
+
+        axios
+        .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+        .then ((response) => {
+            this.store.archetypes = response.data.slice(0,20);
+            console.log(this.store.archetypes);
+        });
     }
+}
 </script>
 
 <template>
     <div class="container">
         <form action="" class="p-3">
             <select class="form-select w-25" id="floatingSelect" aria-label="Floating label select example">
-                <option selected>Spell Card</option>
-                <option value="1">Effect Monster</option>
-                <option value="2">Normal Monster</option>
-                <option value="3">Flip Effect Monster</option>
-                <option value="4">Trap Card</option>
+                <option selected>Choose Archetype</option>
+                <option v-for="item in store.archetypes" value="1">{{ item.archetype_name }}</option>
             </select>
         </form>
     </div>
