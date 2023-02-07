@@ -14,6 +14,25 @@ export default {
             store
         }
     },
+    methods: {
+        searchCards () {
+            axios
+            .get("https://db.ygoprodeck.com/api/v7/cardinfo.php", {
+                params: {
+                    archetype: this.store.archetypeValue
+                }
+            })
+            .then ((response) => {
+                this.store.cards = response.data.data.slice(0,20);
+                console.log(this.store.cards);
+            })
+        },
+        resetSearch() {
+            this.store.archetypeValue = "";
+
+            this.searchCards();
+        }
+    },
     created () {
         axios
         .get("https://db.ygoprodeck.com/api/v7/cardinfo.php")
@@ -34,11 +53,15 @@ export default {
 
 <template>
     <div class="container">
-        <form action="" class="p-3">
-            <select class="form-select w-25" id="floatingSelect" aria-label="Floating label select example">
-                <option selected>Choose Archetype</option>
-                <option v-for="item in store.archetypes" value="1">{{ item.archetype_name }}</option>
+        <form action="" class="p-3 d-flex" @submit.prevent="searchCards()">
+            <select class="form-select w-25" id="floatingSelect" aria-label="Floating label select example"
+             v-model="store.archetypeValue"
+            >
+                <option selected value="">Choose Archetype</option>
+                <option v-for="item in store.archetypes" :value="item.archetype_name">{{ item.archetype_name }}</option>
             </select>
+
+            <button type="submit" class="btn btn-primary ms-2">Submit</button>
         </form>
     </div>
 
