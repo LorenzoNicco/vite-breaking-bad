@@ -1,19 +1,15 @@
 <script>
 import CardGenerator from "./CardGenerator.vue";
+import { store } from "../store.js";
 
     export default {
         name: "AppMain",
         components: {
             CardGenerator
         },
-        props: {
-            cardCount: {
-                type: Number,
-                default: 0
-            },
-            cardsList: {
-                type: Array,
-                default: []
+        data () {
+            return {
+                store
             }
         }
     }
@@ -34,11 +30,11 @@ import CardGenerator from "./CardGenerator.vue";
 
     <div class="container bg-white p-5">
         <div class="row px-2">
-            <div class="col-12 bg-dark text-white px-3 py-2">Found {{ cardCount }} cards</div>
+            <div class="col-12 bg-dark text-white px-3 py-2">Found {{ store.cards.length }} cards</div>
         </div>
 
         <div class="row">
-            <div class="col-2" v-for="item in cardsList">
+            <div class="col-2" v-for="item in store.cards">
                 <CardGenerator :card="item"/>
             </div>
         </div>
