@@ -1,5 +1,6 @@
 <script>
 import CardGenerator from "./CardGenerator.vue";
+import AppLoader from "./AppLoader.vue";
 import { store } from "../store.js";
 
 import axios from "axios";
@@ -7,7 +8,8 @@ import axios from "axios";
 export default {
     name: "AppMain",
     components: {
-        CardGenerator
+        CardGenerator,
+        AppLoader
     },
     data () {
         return {
@@ -34,11 +36,16 @@ export default {
         }
     },
     created () {
+
+        this.store.loading = true;
+
         axios
         .get("https://db.ygoprodeck.com/api/v7/cardinfo.php")
         .then ((response) => {
             this.store.cards = response.data.data.slice(0,20);
             console.log(this.store.cards);
+
+            this.store.loading = false;
         });
 
         axios
@@ -52,29 +59,36 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <form action="" class="p-3 d-flex" @submit.prevent="searchCards()">
+    <div class="container">  <!-- inizio form-->
+        <form action="" class="p-3 d-flex">
             <select class="form-select w-25" id="floatingSelect" aria-label="Floating label select example"
              v-model="store.archetypeValue"
-            >
+             @change="searchCards()"
+            >   
+                <!--soluzione 2: tolto @submit e inserito @change per far partire il filtraggio delle carte al cambio di option selezionata-->
+
                 <option selected value="">Choose Archetype</option>
                 <option v-for="item in store.archetypes" :value="item.archetype_name">{{ item.archetype_name }}</option>
             </select>
 
-            <button type="submit" class="btn btn-primary ms-2">Submit</button>
+            <!-- souzione 1: i bottoni commentati, insieme al @submit nel tag form, fanno partire il filtraggio delle carte -->
+            <!-- <button type="submit" class="btn btn-primary ms-2">Submit</button>
+
+            <button type="reset" class="btn btn-warning ms-2" @click="resetSearch()">Reset</button> -->
         </form>
-    </div>
+    </div>  <!-- fine form-->
 
     <div class="container bg-white p-5">
         <div class="row px-2">
             <div class="col-12 bg-dark text-white px-3 py-2">Found {{ store.cards.length }} cards</div>
         </div>
 
-        <div class="row">
-            <div class="col-2" v-for="item in store.cards">
+        <div class="row">   <!-- inizio sezione carte-->
+            <AppLoader v-if="store.loading == true"/>
+            <div v-else class="col-2" v-for="item in store.cards">
                 <CardGenerator :card="item"/>
             </div>
-        </div>
+        </div>  <!-- fine sezione carte-->
     </div>
 
 </template>
