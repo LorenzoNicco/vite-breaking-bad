@@ -78,7 +78,7 @@ export default {
         </form>
     </div>  <!-- fine form-->
 
-    <div class="container bg-white p-5">
+    <div class="container bg-white p-5 my-min-heigth">
         <div class="row px-2">
             <div class="col-12 bg-dark text-white px-3 py-2">Found {{ store.cards.length }} cards</div>
         </div>
@@ -94,4 +94,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+    .my-min-heigth {
+        min-height: 300px;
+    }
 </style>
