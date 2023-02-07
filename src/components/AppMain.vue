@@ -16,7 +16,6 @@ import CardGenerator from "./CardGenerator.vue";
                 default: []
             }
         }
-
     }
 </script>
 
@@ -24,22 +23,23 @@ import CardGenerator from "./CardGenerator.vue";
     <div class="container">
         <form action="" class="p-3">
             <select class="form-select w-25" id="floatingSelect" aria-label="Floating label select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected>Spell Card</option>
+                <option value="1">Effect Monster</option>
+                <option value="2">Normal Monster</option>
+                <option value="3">Flip Effect Monster</option>
+                <option value="4">Trap Card</option>
             </select>
         </form>
     </div>
 
     <div class="container bg-white p-5">
-        <div class="row">
+        <div class="row px-2">
             <div class="col-12 bg-dark text-white px-3 py-2">Found {{ cardCount }} cards</div>
         </div>
 
         <div class="row">
-            <div class="col-2" v-for="singleCard in cardsList">
-                <CardGenerator :card="card"/>
+            <div class="col-2" v-for="item in cardsList">
+                <CardGenerator :card="item"/>
             </div>
         </div>
     </div>

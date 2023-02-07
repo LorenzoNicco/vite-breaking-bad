@@ -31,7 +31,7 @@ export default {
   </header>
 
   <main>
-    <AppMain :cardCount="cards.length"/>
+    <AppMain :cardCount="cards.length" :cardsList="cards"/>
    </main>
 </template>
 
@@ -40,7 +40,7 @@ export default {
   
   main {
     width: 100%;
-    height: 500px;
+    padding-bottom: 3rem;
     background-color: #d48f38;
   }
 </style>
